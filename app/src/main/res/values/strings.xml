@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">HomeAR</string>
+    <string name="page_title">Collection</string>
+    <string name="searchIcon">Search</string>
+    <string name="shoppingBasket">Basket</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

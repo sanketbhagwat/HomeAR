@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "67162699235",
+    "project_id": "homear-5c395",
+    "storage_bucket": "homear-5c395.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67162699235:android:17fefc3b2dd15363c1dcd6",
+        "android_client_info": {
+          "package_name": "com.example.homear"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "67162699235-8oc9odh9i92bk4bukkiqd3jlm2ev2n8l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpy7ZOywZNn5iK7LsaubucwWtu5UQ3iIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "67162699235-8oc9odh9i92bk4bukkiqd3jlm2ev2n8l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
