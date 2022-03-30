@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="..\:/Users/Sanket/AndroidStudioProjects/HomeAR/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
         <entry key="..\:/Users/Sanket/AndroidStudioProjects/HomeAR/app/src/main/res/drawable/Ar_scan.xml" value="0.2703125" />
         <entry key="..\:/Users/Sanket/AndroidStudioProjects/HomeAR/app/src/main/res/drawable/baseline_menu_18.xml" value="0.18796296296296297" />
@@ -54,16 +55,31 @@
         <entry key="..\:/Users/Sanket/AndroidStudioProjects/HomeAR/app/src/main/res/layout/navigation_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Sanket/AndroidStudioProjects/HomeAR/app/src/main/res/menu/bottom_menu.xml" value="0.2028985507246377" />
         <entry key="..\:/Users/Sanket/AndroidStudioProjects/HomeAR/app/src/main/res/menu/top_app_bar.xml" value="0.176" />
+        <entry key="app/src/main/res/drawable-v24/outline_add_24.xml" value="0.2388888888888889" />
+        <entry key="app/src/main/res/drawable-v24/outline_check_24.xml" value="0.2388888888888889" />
+        <entry key="app/src/main/res/drawable-v24/outline_remove_24.xml" value="0.2388888888888889" />
+        <entry key="app/src/main/res/drawable/border.xml" value="0.31197916666666664" />
         <entry key="app/src/main/res/drawable/outline_360_24.xml" value="0.24479166666666666" />
         <entry key="app/src/main/res/drawable/outline_3d_rotation_24.xml" value="0.24479166666666666" />
         <entry key="app/src/main/res/drawable/outline_view_in_ar_24.xml" value="0.24479166666666666" />
         <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.3109375" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_product_page.xml" value="0.19519927536231885" />
+        <entry key="app/src/main/res/layout/activity_selection.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_show3_d.xml" value="0.19519927536231885" />
         <entry key="app/src/main/res/layout/activity_show_ar.xml" value="0.19519927536231885" />
+        <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/card_layout.xml" value="0.19519927536231885" />
+        <entry key="app/src/main/res/layout/cart_item.xml" value="0.24010416666666667" />
+        <entry key="app/src/main/res/layout/cart_page.xml" value="0.22604166666666667" />
+        <entry key="app/src/main/res/layout/category_cards.xml" value="0.24166666666666667" />
         <entry key="app/src/main/res/layout/fragment_brands.xml" value="0.3098958333333333" />
-        <entry key="app/src/main/res/layout/fragment_product.xml" value="0.24465730283582957" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.19519927536231885" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.24270833333333333" />
+        <entry key="app/src/main/res/layout/fragment_idea.xml" value="0.24010416666666667" />
+        <entry key="app/src/main/res/layout/fragment_product.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.24010416666666667" />
+        <entry key="app/src/main/res/layout/home_rv_layout.xml" value="0.1" />
       </map>
     </option>
   </component>

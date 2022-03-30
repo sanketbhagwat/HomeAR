@@ -15,10 +15,12 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.HomeAR">
-
-        <activity android:name=".MainActivity"
-        android:exported="true"/>
-
+        <activity
+                android:name=".selectionActivity"
+                android:exported="true"/>
+        <activity
+                android:name=".MainActivity"
+                android:exported="true"/>
         <activity
                 android:name=".searchPage"
                 android:exported="true"/>

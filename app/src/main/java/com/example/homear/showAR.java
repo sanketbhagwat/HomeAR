@@ -6,11 +6,18 @@ import android.app.MediaRouteButton;
 import android.content.pm.PackageManager;
 import android.media.CamcorderProfile;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.ar.core.Anchor;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.Node;
@@ -19,12 +26,10 @@ import com.google.ar.sceneform.rendering.*;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 public class showAR extends AppCompatActivity {
@@ -34,6 +39,8 @@ public class showAR extends AppCompatActivity {
     private ArFragment arCam;
     private int clickNo = 0;
     private VideoRecorder videoRecorder;
+    private BottomSheetDialog productsBottomSheetDialog;
+    private BottomSheetBehavior bottomSheetBehavior;
 //    private View colorPreview;
 //    private int defaultColor;
 
@@ -47,9 +54,16 @@ public class showAR extends AppCompatActivity {
         setContentView(R.layout.activity_show_ar);
 
 //        Intent intent=getIntent();
-//        String path =  intent.getExtras().get("modelFile").toString();
+//        File file= (File) intent.getExtras().get("modelFile");
 //
-//        buildModel(path);
+//
+//        buildModel(file);
+
+        if(Build.VERSION.SDK_INT>=21){
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+            Window window=getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        }
 
 
 
@@ -92,23 +106,54 @@ public class showAR extends AppCompatActivity {
 
 
 
-        findViewById(R.id.loadButton)
-                .setOnClickListener(v -> {
-                    try {
-                        File file = File.createTempFile("chair", "glb");
-                        model.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                                buildModel(file);
-                            }
-                        });
-                    } catch (IOException e) {
-                        e.printStackTrace();
+//        findViewById(R.id.loadButton)
+//                .setOnClickListener(v -> {
+//                    try {
+//                        File file = File.createTempFile("chair", "glb");
+//                        model.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+//                            @Override
+//                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                                buildModel(file);
+//                            }
+//                        });
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+////
 //
+//                    }
+////
+//                });
+        LinearLayout bottomSheetLayout=findViewById(R.id.bottomSheet);
+        bottomSheetBehavior=BottomSheetBehavior.from(bottomSheetLayout);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
-                    }
-//
+
+        bottomSheetBehavior.setPeekHeight(280);
+        bottomSheetBehavior.setHideable(false);
+        findViewById(R.id.loadButton)
+                .setOnClickListener(v->{
+                    bottomSheetBehavior.setPeekHeight(280);
+                    bottomSheetBehavior.setHideable(false);
+
+
                 });
+        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if(newState==BottomSheetBehavior.STATE_COLLAPSED) {
+                    bottomSheetBehavior.setPeekHeight(0);
+                    findViewById(R.id.loadButton).setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                findViewById(R.id.loadButton).setVisibility(View.INVISIBLE);
+
+            }
+        });
 
 
 //        findViewById(R.id.changeTexture).setOnClickListener((e->{
@@ -218,6 +263,37 @@ public class showAR extends AppCompatActivity {
                 node.setRenderable(r2);
             });
         }
+
+//        Texture.builder()
+//                .setSource(this, texturesInteractor.getRes(position))
+//                    .build()
+//                    .thenAccept(t -> {
+//                BaseTransformableNode node = arFragment.getTransformationSystem().getSelectedNode();
+//                if (node != null) {
+//                    node.getRenderable().getMaterial().setTexture("baseColor", t);
+//                }
+//            })
+//            .exceptionally(this::showModelBuildError);
+
+//         Texture.builder()
+//                 .setSource(this, R.drawable.texture)
+//  .build()
+//  .thenAccept { texture ->
+//            MaterialFactory.makeOpaqueWithTexture(this, texture)
+//                    .thenAccept { materialTexture = it}
+//    }
+
+//    Texture texture=R.drawable.texture;
+//    private void changeTextureNode(Node node) {
+//        CompletableFuture<Material> materialCompletableFuture =
+//                MaterialFactory.makeOpaqueWithTexture(this)
+//
+//        ((CompletableFuture<?>) materialCompletableFuture).thenAccept(material -> {
+//            Renderable r2 = node.getRenderable().makeCopy();
+//            r2.setMaterial((Material) material);
+//            node.setRenderable(r2);
+//        });
+//    }
 
     }
 

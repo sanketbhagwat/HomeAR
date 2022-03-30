@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,10 +57,41 @@ public class IdeaFragment extends Fragment {
         }
     }
 
+    ArrayList<cartItem>cartItemArrayList =new ArrayList<>();
+    CartAdapter cartAdapter;
+    RecyclerView cartRecyclerView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_idea, container, false);
+        View view=inflater.inflate(R.layout.fragment_idea, container, false);
+
+        cartRecyclerView=view.findViewById(R.id.cartRecyclerView);
+        cartItem cart_item1=new cartItem("chair",R.drawable.texture,"blue","metallic","20$");
+        cartItem cart_item2=new cartItem("chair",R.drawable.texture,"blue","metallic","20$");
+        cartItem cart_item3=new cartItem("chair",R.drawable.texture,"blue","metallic","20$");
+        cartItem cart_item4=new cartItem("chair",R.drawable.texture,"blue","metallic","20$");
+        cartItem cart_item5=new cartItem("chair",R.drawable.texture,"blue","metallic","20$");
+        cartItem cart_item6=new cartItem("chair",R.drawable.texture,"blue","metallic","20$");
+
+
+        cartItemArrayList.add(cart_item1);
+        cartItemArrayList.add(cart_item2);
+        cartItemArrayList.add(cart_item3);
+        cartItemArrayList.add(cart_item4);
+        cartItemArrayList.add(cart_item5);
+        cartItemArrayList.add(cart_item6);
+
+
+
+        cartAdapter=new CartAdapter(cartItemArrayList);
+        cartRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        cartRecyclerView.setAdapter(cartAdapter);
+        cartAdapter.notifyDataSetChanged();
+
+
+
+        return view;
     }
 }
