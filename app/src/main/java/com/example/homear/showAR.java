@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.ar.core.Anchor;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.Node;
@@ -39,8 +40,9 @@ public class showAR extends AppCompatActivity {
     private ArFragment arCam;
     private int clickNo = 0;
     private VideoRecorder videoRecorder;
-    private BottomSheetDialog productsBottomSheetDialog;
+    private BottomSheetDialog bottomSheetDialog;
     private BottomSheetBehavior bottomSheetBehavior;
+    private FloatingActionButton loadButton;
 //    private View colorPreview;
 //    private int defaultColor;
 
@@ -60,9 +62,10 @@ public class showAR extends AppCompatActivity {
 //        buildModel(file);
 
         if(Build.VERSION.SDK_INT>=21){
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
             Window window=getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
         }
 
 
@@ -123,34 +126,69 @@ public class showAR extends AppCompatActivity {
 //                    }
 ////
 //                });
-        LinearLayout bottomSheetLayout=findViewById(R.id.bottomSheet);
+        LinearLayout bottomSheetLayout=findViewById(R.id.bottom_sheet);
         bottomSheetBehavior=BottomSheetBehavior.from(bottomSheetLayout);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
 
-        bottomSheetBehavior.setPeekHeight(280);
-        bottomSheetBehavior.setHideable(false);
-        findViewById(R.id.loadButton)
-                .setOnClickListener(v->{
-                    bottomSheetBehavior.setPeekHeight(280);
-                    bottomSheetBehavior.setHideable(false);
+        bottomSheetBehavior.setPeekHeight(0);
+        bottomSheetBehavior.setHideable(true);
+
+        bottomSheetLayout.findViewById(R.id.getCan).setOnClickListener(new View.OnClickListener() {
+                                                                           @Override
+                                                                           public void onClick(View view) {
+                                                                               Toast.makeText(showAR.this, "gett", Toast.LENGTH_SHORT).show();
+                                                                               bottomSheetBehavior.setHideable(true);
+                                                                               bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+//                                                                               bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+//                                                                               loadButton.setVisibility(View.VISIBLE);
+                                                                           }
+                                                                       });
+
+        loadButton=findViewById(R.id.loadButton);
+                loadButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+//                        bottomSheetDialog = new BottomSheetDialog(showAR.this, R.style.BottomSheetTheme);
+//                        View sheetView= LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet,
+//                                 findViewById(R.id.bottom_sheet));
+//
+//                        sheetView.findViewById(R.id.getCan).setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                Toast.makeText(showAR.this,"gett",Toast.LENGTH_SHORT).show();
+//                            }
+                        bottomSheetBehavior.setPeekHeight(200);
+                        bottomSheetBehavior.setHideable(false);
+                        loadButton.setVisibility(View.INVISIBLE);
 
 
+//                        bottomSheetDialog.setContentView(sheetView);
+//                        bottomSheetDialog.show();
+
+                    }
                 });
+//                    bottomSheetBehavior.setPeekHeight(280);
+//                    bottomSheetBehavior.setHideable(false);
+
+
+
+
         bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
                 if(newState==BottomSheetBehavior.STATE_COLLAPSED) {
                     bottomSheetBehavior.setPeekHeight(0);
-                    findViewById(R.id.loadButton).setVisibility(View.VISIBLE);
+                    loadButton.setVisibility(View.VISIBLE);
                 }
             }
 
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-                findViewById(R.id.loadButton).setVisibility(View.INVISIBLE);
+                loadButton.setVisibility(View.INVISIBLE);
+
 
             }
         });

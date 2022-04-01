@@ -23,6 +23,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/rv_child"
+                android:background="@android:color/black"
+                android:paddingBottom="10dp"
+
+
+        >
+
+        </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_child2"
+                android:paddingBottom="10dp"
 
 
         >

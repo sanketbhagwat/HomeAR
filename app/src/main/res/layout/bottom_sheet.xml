@@ -1,60 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:id="@+id/bottomSheet"
+              android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               app:behavior_hideable="true"
-              app:behavior_peekHeight="200dp"
+              android:id="@+id/bottom_sheet"
+              app:behavior_peekHeight="400dp"
+              android:orientation="vertical"
+
+
+              android:background="@drawable/bottom_sheet_shape"
+
+
               app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
 >
     
-    <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:id="@+id/bottomSheetContainer"
-    >
-        
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:id="@+id/botomSheetHeader"
-        >
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/sheetTitle"
-                    android:layout_marginLeft="60dp"
-                    android:layout_marginRight="30dp"
-                    android:ellipsize="middle"
-                    android:maxLines="1"
-                    android:textSize="24dp"
-                    android:text="Choose Your Furniture"
-                    android:layout_weight="1">
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:text="Collection">
 
             </TextView>
-            <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/closeSheet"
-                    android:padding="20dp"
-                    android:layout_marginRight="20dp"
-                    ></ImageView>
+             <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal"
+                     android:padding="8dp"
+
+             >
+                 <ImageView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:src="@drawable/outline_delete_outline_24"
+
+                 />
+                 <TextView
+                         android:id="@+id/getCan"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="Share"
+                         android:textSize="16sp">
+
+                 </TextView>
+             </LinearLayout>
+             <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/outline_delete_outline_24"
+        />
+        <TextView
+                android:id="@+id/getCan2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Share"
+                android:textSize="16sp">
+
+        </TextView>
+    </LinearLayout>
+             <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/outline_delete_outline_24"
+    />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Share"
+            android:textSize="16sp">
+
+    </TextView>
+</LinearLayout>
+
 
 
         </LinearLayout>
-        <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/productsRecyclerView"
-                android:clipToPadding="false"
-                android:scrollbars="vertical"/>
-
-
-
-        
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-</LinearLayout>

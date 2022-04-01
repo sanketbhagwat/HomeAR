@@ -37,6 +37,9 @@ public class homeAdapter extends RecyclerView.Adapter<homeAdapter.ViewHolder> {
         holder.rv_child.setAdapter(categoriesAdapter);
         categoriesAdapter.notifyDataSetChanged();
 
+//        productAdapter product_adapter;
+//        product_adapter=new productAdapter()
+
     }
 
     @Override
@@ -48,11 +51,13 @@ public class homeAdapter extends RecyclerView.Adapter<homeAdapter.ViewHolder> {
 
        RecyclerView rv_child;
        TextView home_titles;
+       RecyclerView rv_child2;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             rv_child=itemView.findViewById(R.id.rv_child);
+            rv_child2=itemView.findViewById(R.id.rv_child2);
             home_titles=itemView.findViewById(R.id.home_titles);
 
         }

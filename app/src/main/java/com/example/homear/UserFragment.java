@@ -1,10 +1,13 @@
 package com.example.homear;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+import com.google.android.material.tabs.TabLayout;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,11 +55,32 @@ public class UserFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private int[] tabIcons = { R.drawable.outline_person_outline_24,
+            R.drawable.ic_baseline_add, R.drawable.baseline_shopping_basket_24 };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user, container, false);
+        View view =inflater.inflate(R.layout.fragment_user, container, false);
+//        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+//        setupViewPager(viewPager);
+//        tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+//        tabLayout.setupWithViewPager(viewPager);
+//        setupTabIcons();
+
+        return view;
+    }
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+    }
+    private void setupViewPager(ViewPager viewPager) {
+//        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+//        adapter.addFragment(new Fragment1(), ""); adapter.addFragment(new Fragment2(), "");
+//        adapter.addFragment(new Fragment3(), ""); viewPager.setAdapter(adapter);
     }
 }

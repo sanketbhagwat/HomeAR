@@ -121,6 +121,8 @@ public class HomeFragment extends Fragment {
 
         homeClassArrayList.add(new homeClass("categories",recentlyArrayList));
 
+//        homeClassArrayList.add(new homeClass("products",))
+
 //        home_Adapter=new homeAdapter(homeClassArrayList,view.getContext());
 //        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 //        recyclerView.setAdapter(home_Adapter);
@@ -168,7 +170,7 @@ public class HomeFragment extends Fragment {
 //        recentlyArrayList.add(new Categories("desk",R.drawable.texture));
 //        recentlyArrayList.add(new Categories("table",R.drawable.texture));
 
-        homeClassArrayList.add(new homeClass("categories",recentlyArrayList));
+//        homeClassArrayList.add(new homeClass("categories",recentlyArrayList));
 
         home_Adapter=new homeAdapter(homeClassArrayList,view.getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
