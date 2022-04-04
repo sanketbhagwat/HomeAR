@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<ImageButton xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--             android:layout_width="wrap_content"-->
+<!--             android:layout_height="wrap_content"-->
+<!--             android:id="@+id/ar_button"-->
+<!--             android:scaleType="centerCrop"-->
+
+<!--             android:src="@drawable/outline_radio_button_checked_24"-->
+<!--             android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--&gt;-->
+
+<!--</ImageButton>-->
+
+
+<LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/arView"
+        android:padding="10dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@drawable/rounded_bg"
+        android:orientation="vertical"
+>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selected Model Name"
+            android:textSize="20dp"
+    >
+
+    </TextView>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="20$"
+              android:textSize="20dp"
+    >
+
+    </TextView>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  >
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Materials"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
+
+        >
+            <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/field_materials"
+                    android:inputType="none">
+
+            </AutoCompleteTextView>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Textures"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+            <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/field_textures"
+                    android:inputType="none">
+
+            </AutoCompleteTextView>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+

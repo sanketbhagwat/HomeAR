@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 
 
@@ -56,7 +57,7 @@ public class UserFragment extends Fragment {
         }
     }
     private TabLayout tabLayout;
-    private ViewPager viewPager;
+    private ViewPager2 viewPager2;
     private int[] tabIcons = { R.drawable.outline_person_outline_24,
             R.drawable.ic_baseline_add, R.drawable.baseline_shopping_basket_24 };
 
@@ -65,11 +66,12 @@ public class UserFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_user, container, false);
-//        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        viewPager2 = (ViewPager2) view.findViewById(R.id.viewPager2);
 //        setupViewPager(viewPager);
-//        tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+        tabLayout = (TabLayout) view.findViewById(R.id.tablayout);
 //        tabLayout.setupWithViewPager(viewPager);
 //        setupTabIcons();
+        
 
         return view;
     }
