@@ -6,6 +6,15 @@ public class cartItem {
     String color;
     String texture;
     String price;
+    boolean expandable;
+
+    public boolean isExpandable() {
+        return expandable;
+    }
+
+    public void setExpandable(boolean expandable) {
+        this.expandable = expandable;
+    }
 
     public cartItem(String name, int image, String color, String texture, String price) {
         this.name = name;
@@ -13,6 +22,7 @@ public class cartItem {
         this.color = color;
         this.texture = texture;
         this.price = price;
+        this.expandable=false;
     }
 
     public String getColor() {

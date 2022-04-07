@@ -4,9 +4,7 @@ package com.example.homear;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -52,8 +50,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHodler
         holder.shoeImageView.setImageResource(cartItemArrayList.get(position).image);
         holder.cartItemName.setText(cartItemArrayList.get(position).name);
         holder.cartItemPrice.setText(cartItemArrayList.get(position).price);
-        holder.cartItemColor.setText(cartItemArrayList.get(position).color);
-        holder.cartItemTexture.setText(cartItemArrayList.get(position).texture);
+//        holder.cartItemColor.setText(cartItemArrayList.get(position).color);
+//        holder.cartItemTexture.setText(cartItemArrayList.get(position).texture);
+
+        boolean isExpandable=cartItemArrayList.get(position).isExpandable();
+        holder.relativeLayout.setVisibility(isExpandable? View.VISIBLE:View.GONE);
 
 
 //        holder.deleteShoeBtn.setOnClickListener(new View.OnClickListener() {
@@ -91,14 +92,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHodler
         private ImageView deleteShoeBtn;
         private ImageView shoeImageView;
         private ImageButton addQuantityBtn, minusQuantityBtn;
+        LinearLayout linearLayout;
+        RelativeLayout relativeLayout;
 
         public CartViewHodler(@NonNull View itemView) {
             super(itemView);
 
             cartItemName= itemView.findViewById(R.id.CartItemName);
             cartItemPrice= itemView.findViewById(R.id.CartItemPrice);
-            cartItemColor= itemView.findViewById(R.id.CartItemColor);
-            cartItemTexture= itemView.findViewById(R.id.CartItemTexture);
+//            cartItemColor= itemView.findViewById(R.id.CartItemColor);
+//            cartItemTexture= itemView.findViewById(R.id.CartItemTexture);
 //            shoePriceTv = itemView.findViewById(R.id.CartItemColor);
 
             deleteShoeBtn = itemView.findViewById(R.id.eachCartItemDeleteBtn);
@@ -106,6 +109,18 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHodler
             cartItemQuantity = itemView.findViewById(R.id.eachCartItemQuantityTV);
             addQuantityBtn = itemView.findViewById(R.id.eachCartItemAddQuantityBtn);
             minusQuantityBtn = itemView.findViewById(R.id.eachCartItemMinusQuantityBtn);
+
+            linearLayout=itemView.findViewById(R.id.cart_item);
+            relativeLayout=itemView.findViewById(R.id.expandable);
+
+            linearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    cartItem cart_item=cartItemArrayList.get(getAdapterPosition());
+                    cart_item.setExpandable(!cart_item.isExpandable());
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
         }
     }
 

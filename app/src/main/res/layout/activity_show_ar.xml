@@ -18,40 +18,129 @@
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintVertical_bias="0.0"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/loadButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_baseline_add" tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="636dp" tools:layout_editor_absoluteX="177dp"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/changeTexture"
-            android:layout_width="wrap_content"
+    <LinearLayout
+            android:id="@+id/bottomLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_baseline_add" tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="16dp" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.836"/>
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:padding="15dp"
 
-    <Button
+    >
+<!--        <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                -->
+<!--                -->
+<!--        >-->
+
+
+        <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/vdoRecording"
+                android:src="@drawable/outline_videocam_off_24"
+                android:background="@android:color/transparent"
+                android:layout_gravity="center"
+                android:layout_marginRight="30dp"
+                android:scaleType="centerCrop"
+
+        />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/loadButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_baseline_add"
+                />
+
+        <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/takeImage"
+                android:src="@drawable/outline_photo_camera_24"
+                android:background="@android:color/transparent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:scaleType="centerCrop"
+
+        />
+        </LinearLayout>
+
+
+        <!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--                android:id="@+id/changeTexture"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="16dp"-->
+<!--                android:src="@drawable/ic_baseline_add" tools:ignore="MissingConstraints"-->
+<!--                tools:layout_editor_absoluteY="16dp" app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.836"/>-->
+
+<!--    </LinearLayout>-->
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp"
+    >
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+    <ImageButton
             android:id="@+id/closeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:icon="@drawable/outline_clear_24"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-    />
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/vdoRecording"
-            app:icon="@drawable/outline_videocam_24"
-            android:layout_gravity="right"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/outline_clear_24"
+            android:scaleType="center"
+
 
     />
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="200dp"
+
+    >
+        <ImageButton
+                android:id="@+id/addToCart"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/outline_shopping_basket_24"
+                android:scaleType="center"
+                android:layout_marginRight="10dp"
+
+
+
+        />
+        <ImageButton
+                android:id="@+id/infoBtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/outline_info_24"
+                android:scaleType="center"
+
+
+        />
+
+    </LinearLayout>
+    </LinearLayout>
+
+
+
+
     <include layout="@layout/bottom_sheet"/>
 <!--    <View-->
 <!--            android:id="@+id/preview_selected_color"-->
@@ -61,24 +150,24 @@
 <!--            android:background="@android:color/darker_gray"-->
 <!--            android:layout_marginTop="8dp" />-->
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_margin="20sp"
-            android:gravity="center"
-            android:orientation="vertical">
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/simpleDialog"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp"
-                android:text="Simple Dialog"
-                android:textAllCaps="false"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-                android:textColor="@android:color/white"
-        />
-    </LinearLayout>
+<!--    <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="top"-->
+<!--            android:layout_margin="20sp"-->
+<!--            android:gravity="center"-->
+<!--            android:orientation="vertical">-->
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/simpleDialog"-->
+<!--                android:layout_width="300dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginVertical="5dp"-->
+<!--                android:text="Simple Dialog"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"-->
+<!--                android:textColor="@android:color/white"-->
+<!--        />-->
+<!--    </LinearLayout>-->
 <!--    <include layout="@layout/"/>-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

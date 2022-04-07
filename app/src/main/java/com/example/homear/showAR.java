@@ -10,15 +10,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.*;
+import android.view.*;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,12 +30,10 @@ import com.google.ar.sceneform.rendering.*;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 public class showAR extends AppCompatActivity implements showARR {
@@ -67,41 +63,41 @@ public class showAR extends AppCompatActivity implements showARR {
 
         setContentView(R.layout.activity_show_ar);
 
-        Button dialogbtn=findViewById(R.id.simpleDialog);
-        dialogbtn.setOnClickListener(view -> {
-            simpleDialog();
-        });
+//        Button dialogbtn=findViewById(R.id.simpleDialog);
+//        dialogbtn.setOnClickListener(view -> {
+//            simpleDialog();
+//        });
 
 //        CompletableFuture<ViewRenderable> modelEditor=ViewRenderable.builder().setView(this,R.layout.ar_button).build();
 
 
 
-        String[] materials=new String[]{"Material-01","Material-02","Material-03"};
-        ArrayAdapter<String> madapter=new ArrayAdapter<>(
-                this,R.layout.dropdown_items,materials
-        );
-        AutoCompleteTextView autoCompleteTextView1=findViewById(R.id.field_materials);
-        autoCompleteTextView1.setAdapter(madapter);
-
-        String[] textures=new String[]{"texture-01","texture-02","texture-02"};
-        ArrayAdapter<String>tadapter=new ArrayAdapter<>(
-                this,R.layout.dropdown_items,textures
-        );
-        AutoCompleteTextView autoCompleteTextView2 =findViewById(R.id.field_textures);
-        autoCompleteTextView2.setAdapter(tadapter);
-
-        autoCompleteTextView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(showAR.this,autoCompleteTextView1.getText().toString(),Toast.LENGTH_SHORT).show();
-            }
-        });
-        autoCompleteTextView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(showAR.this,autoCompleteTextView2.getText().toString(),Toast.LENGTH_SHORT).show();
-            }
-        });
+//        String[] materials=new String[]{"Material-01","Material-02","Material-03"};
+//        ArrayAdapter<String> madapter=new ArrayAdapter<>(
+//                this,R.layout.dropdown_items,materials
+//        );
+//        AutoCompleteTextView autoCompleteTextView1=findViewById(R.id.field_materials);
+//        autoCompleteTextView1.setAdapter(madapter);
+//
+//        String[] textures=new String[]{"texture-01","texture-02","texture-02"};
+//        ArrayAdapter<String>tadapter=new ArrayAdapter<>(
+//                this,R.layout.dropdown_items,textures
+//        );
+//        AutoCompleteTextView autoCompleteTextView2 =findViewById(R.id.field_textures);
+//        autoCompleteTextView2.setAdapter(tadapter);
+//
+//        autoCompleteTextView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Toast.makeText(showAR.this,autoCompleteTextView1.getText().toString(),Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        autoCompleteTextView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Toast.makeText(showAR.this,autoCompleteTextView2.getText().toString(),Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
 
 //
@@ -127,7 +123,8 @@ public class showAR extends AppCompatActivity implements showARR {
             finish();
         });
 
-        findViewById(R.id.vdoRecording).setOnClickListener(e->{
+        ImageButton vdoButton=findViewById(R.id.vdoRecording);
+        vdoButton.setOnClickListener(e->{
             if(videoRecorder==null) {
                 videoRecorder = new VideoRecorder();
                 videoRecorder.setSceneView(arCam.getArSceneView());
@@ -135,10 +132,17 @@ public class showAR extends AppCompatActivity implements showARR {
                 videoRecorder.setVideoQuality(CamcorderProfile.QUALITY_HIGH, orientation);
             }
             boolean isRecording=videoRecorder.onToggleRecord();
-            if(isRecording)
-                Toast.makeText(this,"Started Recording",Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(this,"Recording stopped",Toast.LENGTH_SHORT).show();
+            if(isRecording) {
+                Toast.makeText(this, "Started Recording", Toast.LENGTH_SHORT).show();
+                vdoButton.setImageResource(R.drawable.outline_videocam_24);
+
+            }
+
+            else{
+                Toast.makeText(this, "Recording stopped", Toast.LENGTH_SHORT).show();
+                vdoButton.setImageResource(R.drawable.outline_videocam_off_24);
+
+            }
 
 
         });
@@ -147,28 +151,29 @@ public class showAR extends AppCompatActivity implements showARR {
 
 
 
-        findViewById(R.id.loadButton)
-                .setOnClickListener(v -> {
-                    try {
-                        File file = File.createTempFile("chair", "glb");
-                        model.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                                buildModel(file);
-                            }
-                        });
-                    } catch (IOException e) {
-                        e.printStackTrace();
+//        findViewById(R.id.loadButton)
+//                .setOnClickListener(v -> {
+//                    try {
+//                        File file = File.createTempFile("chair", "glb");
+//                        model.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+//                            @Override
+//                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                                buildModel(file);
+//                            }
+//                        });
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+////
 //
-
-                    }
-//
-                });
+//                    }
+////
+//                });
         LinearLayout bottomSheetLayout=findViewById(R.id.bottom_sheet);
         bottomSheetBehavior=BottomSheetBehavior.from(bottomSheetLayout);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
 
 
         bottomSheetBehavior.setPeekHeight(0);
@@ -179,35 +184,36 @@ public class showAR extends AppCompatActivity implements showARR {
                                                                            public void onClick(View view) {
                                                                                Toast.makeText(showAR.this, "gett", Toast.LENGTH_SHORT).show();
                                                                                bottomSheetBehavior.setHideable(true);
-                                                                               bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                                                                               bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 //                                                                               bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-//                                                                               loadButton.setVisibility(View.VISIBLE);
+//                                                                               findViewById(R.id.bottomLayout).setVisibility(View.VISIBLE);
                                                                            }
                                                                        });
 
-//        loadButton=findViewById(R.id.loadButton);
-//                loadButton.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
+        loadButton=findViewById(R.id.loadButton);
+                loadButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
 //                        bottomSheetDialog = new BottomSheetDialog(showAR.this, R.style.BottomSheetTheme);
 //                        View sheetView= LayoutInflater.from(getApplicationContext()).inflate(R.layout.bottom_sheet,
 //                                 findViewById(R.id.bottom_sheet));
-//
+
 //                        sheetView.findViewById(R.id.getCan).setOnClickListener(new View.OnClickListener() {
 //                            @Override
 //                            public void onClick(View view) {
 //                                Toast.makeText(showAR.this,"gett",Toast.LENGTH_SHORT).show();
 //                            }
-//                        bottomSheetBehavior.setPeekHeight(200);
-//                        bottomSheetBehavior.setHideable(false);
+                        bottomSheetBehavior.setPeekHeight(900);
+                        bottomSheetBehavior.setHideable(false);
 //                        loadButton.setVisibility(View.INVISIBLE);
+                        findViewById(R.id.bottomLayout).setVisibility(View.INVISIBLE);
 
 
 //                        bottomSheetDialog.setContentView(sheetView);
 //                        bottomSheetDialog.show();
 
-//                    }
-//                });
+                    }
+                });
 //                    bottomSheetBehavior.setPeekHeight(280);
 //                    bottomSheetBehavior.setHideable(false);
 
@@ -217,15 +223,15 @@ public class showAR extends AppCompatActivity implements showARR {
         bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                if(newState==BottomSheetBehavior.STATE_COLLAPSED) {
-                    bottomSheetBehavior.setPeekHeight(0);
-                    loadButton.setVisibility(View.VISIBLE);
+                if(newState==BottomSheetBehavior.STATE_HIDDEN) {
+//                    bottomSheetBehavior.setPeekHeight(0);
+                    findViewById(R.id.bottomLayout).setVisibility(View.VISIBLE);
                 }
             }
 
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-                loadButton.setVisibility(View.INVISIBLE);
+                findViewById(R.id.bottomLayout).setVisibility(View.INVISIBLE);
 
 
             }

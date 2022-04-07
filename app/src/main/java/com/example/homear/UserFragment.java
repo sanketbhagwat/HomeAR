@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 
 /**
@@ -58,28 +60,29 @@ public class UserFragment extends Fragment {
     }
     private TabLayout tabLayout;
     private ViewPager2 viewPager2;
-    private int[] tabIcons = { R.drawable.outline_person_outline_24,
-            R.drawable.ic_baseline_add, R.drawable.baseline_shopping_basket_24 };
+    user_adapter userAdapter;
+    private int[] tabIcons = { R.drawable.outline_crop_original_24,
+            R.drawable.outline_video_library_24,R.drawable.outline_favorite_24};
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_user, container, false);
-        viewPager2 = (ViewPager2) view.findViewById(R.id.viewPager2);
-//        setupViewPager(viewPager);
-        tabLayout = (TabLayout) view.findViewById(R.id.tablayout);
-//        tabLayout.setupWithViewPager(viewPager);
-//        setupTabIcons();
+        viewPager2 = view.findViewById(R.id.viewPager2);
+//
+        tabLayout = view.findViewById(R.id.tabLayout);
+        userAdapter=new user_adapter((FragmentActivity) view.getContext());
+
+        viewPager2.setAdapter(userAdapter);
+        new TabLayoutMediator(tabLayout,viewPager2,(tab, position) -> tab.setIcon(tabIcons[position])).attach();
+//
         
 
         return view;
     }
-    private void setupTabIcons() {
-        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
-        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
-        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
-    }
+
     private void setupViewPager(ViewPager viewPager) {
 //        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 //        adapter.addFragment(new Fragment1(), ""); adapter.addFragment(new Fragment2(), "");
