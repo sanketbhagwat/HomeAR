@@ -106,7 +106,7 @@ public class VideoRecorder {
             videoDirectory =
                     new File(
                             Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-                                    + "/homeAR");
+                                    + "/homeAR/Videos");
         }
         if (videoBaseName == null || videoBaseName.isEmpty()) {
             videoBaseName = "Sample";

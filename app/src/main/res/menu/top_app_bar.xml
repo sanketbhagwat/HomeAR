@@ -5,16 +5,18 @@
 
 
     <item
-            android:id="@+id/favorite"
-            android:icon="@drawable/baseline_search_24"
-            android:title="Favourites"
-            app:showAsAction="ifRoom" />
-
-    <item
             android:id="@+id/search"
-            android:icon="@drawable/baseline_shopping_basket_24"
-            android:title="Search"
-            app:showAsAction="ifRoom" />
+            android:icon="@drawable/baseline_search_24"
+            android:title="search"
+            app:showAsAction="always"
+            app:actionViewClass="android.widget.SearchView"
+    />
+
+<!--    <item-->
+<!--            android:id="@+id/search"-->
+<!--            android:icon="@drawable/baseline_shopping_basket_24"-->
+<!--            android:title="Search"-->
+<!--            app:showAsAction="ifRoom" />-->
 
 
 
