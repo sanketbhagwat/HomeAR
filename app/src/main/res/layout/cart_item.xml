@@ -152,18 +152,24 @@
                     android:id="@+id/expandable"
 
             >
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Heyyyyyyy"
-                        android:textSize="16dp"
-                        android:layout_margin="10dp"
+<!--                <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Heyyyyyyy"-->
+<!--                        android:textSize="16dp"-->
+<!--                        android:layout_margin="10dp"-->
 
-                        android:textStyle="bold"
-                >
+<!--                        android:textStyle="bold"-->
+<!--                >-->
 
 
-                </TextView>
+<!--                </TextView>-->
+                <androidx.recyclerview.widget.RecyclerView android:layout_width="match_parent"
+                                                           android:layout_height="wrap_content"
+                                                           android:id="@+id/cart_child_rv"
+                                                           >
+
+                </androidx.recyclerview.widget.RecyclerView>
             </RelativeLayout>
 
         </LinearLayout>

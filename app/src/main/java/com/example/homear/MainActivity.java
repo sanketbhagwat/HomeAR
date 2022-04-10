@@ -79,6 +79,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
+    productAdapter product_Adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -157,6 +158,10 @@ public class MainActivity extends AppCompatActivity {
                 new FirebaseRecyclerOptions.Builder<products>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("products"),products.class)
                         .build();
+
+
+
+
 
 
 

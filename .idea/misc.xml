@@ -79,12 +79,13 @@
         <entry key="app/src/main/res/layout/activity_selection.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_show3_d.xml" value="0.19519927536231885" />
         <entry key="app/src/main/res/layout/activity_show_ar.xml" value="0.19519927536231885" />
-        <entry key="app/src/main/res/layout/ar_button.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/ar_button.xml" value="0.25206611570247933" />
         <entry key="app/src/main/res/layout/ar_dialog.xml" value="0.24166666666666667" />
-        <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.24010416666666667" />
+        <entry key="app/src/main/res/layout/bottom_sheet.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bottom_sheet_shape.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/card_layout.xml" value="0.19519927536231885" />
         <entry key="app/src/main/res/layout/cart_dialog.xml" value="0.17395833333333333" />
+        <entry key="app/src/main/res/layout/cart_expandable_item_view.xml" value="0.29583333333333334" />
         <entry key="app/src/main/res/layout/cart_item.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/layout/cart_page.xml" value="0.22604166666666667" />
         <entry key="app/src/main/res/layout/category_cards.xml" value="0.24166666666666667" />

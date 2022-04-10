@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="600dp"
+              android:layout_height="@dimen/_500sdp"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               app:behavior_hideable="true"
               android:id="@+id/bottom_sheet"
               android:orientation="vertical"
+
 
 
               android:background="@drawable/bottom_sheet_shape"
@@ -13,19 +14,28 @@
 
               app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
 >
-    
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/sheetTitle"
-                    android:textStyle="bold"
-                    android:layout_marginTop="8dp"
-                    android:textSize="18sp"
-                    android:layout_gravity="center"
-                    android:text="Collection">
 
-            </TextView>
-             <LinearLayout
+<!--    <ImageView android:layout_width="133dp" -->
+<!--               android:layout_height="35dp"-->
+<!--               android:background="@android:color/transparent"-->
+<!--               android:src="@drawable/outline_remove_24"-->
+<!--               android:layout_gravity="center"-->
+<!--    >-->
+
+<!--    </ImageView>-->
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sheetTitle"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textSize="22sp"
+            android:layout_gravity="center"
+            android:text="Collection">
+
+    </TextView>
+
+    <LinearLayout
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:orientation="horizontal"

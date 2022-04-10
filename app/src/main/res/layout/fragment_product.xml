@@ -16,7 +16,7 @@
 
             <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="300dp">
+                    android:layout_height="@dimen/_250sdp">
 
 
                 <ImageView
@@ -35,8 +35,10 @@
                         app:buttonTint="@android:color/white"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_margin="20dp"
-                />
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_15sdp"/>
 
             </RelativeLayout>
             <LinearLayout

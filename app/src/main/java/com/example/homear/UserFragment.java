@@ -19,6 +19,8 @@ import com.google.android.material.tabs.TabLayoutMediator;
  */
 public class UserFragment extends Fragment {
 
+    private static final int READ_PERMISSION=101;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -77,6 +79,14 @@ public class UserFragment extends Fragment {
 
         viewPager2.setAdapter(userAdapter);
         new TabLayoutMediator(tabLayout,viewPager2,(tab, position) -> tab.setIcon(tabIcons[position])).attach();
+
+
+//        if(ContextCompat.checkSelfPermission(view.getContext(), Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+//            ActivityCompat.requestPermissions(,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},READ_PERMISSION);
+//        }
+////        else{
+////            loadImages();
+////        }
 //
         
 

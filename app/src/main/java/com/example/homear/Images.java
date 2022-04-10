@@ -1,16 +1,21 @@
 package com.example.homear;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -64,8 +69,9 @@ public class Images extends Fragment {
     galleryAdapter gallery_adapter;
     List<String>images;
     TextView gallery_number;
-
     private static final int READ_PERMISSION=101;
+
+
 
 
     @Override
@@ -75,15 +81,74 @@ public class Images extends Fragment {
         View view= inflater.inflate(R.layout.fragment_images, container, false);
         imageRecycler=view.findViewById(R.id.imagesRecycler);
 
-        if(ContextCompat.checkSelfPermission(view.getContext(), Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
-//            ActivityCompat.requestPermissions(,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},READ_PERMISSION);
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // request the permission
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    READ_PERMISSION);
         }
-//        else{
-//            loadImages();
-//        }
+        else {
+            // has the permission.
+            loadImages();
+        }
+
+//        gallery_adapter=new galleryAdapter(view.getContext(),images);
+//        imageRecycler = view.findViewById(R.id.prodRecyclerView);
+//        imageRecycler.setLayoutManager(new GridLayoutManager(view.getContext(),2));
+
+
 
         return view;
     }
+
+
+    private void loadImages() {
+            File file = new
+                    File(android.os.Environment.getExternalStorageDirectory() + "homeAR/Images");
+            if (file.exists()) {
+                String[] fileList = file.list();
+                Collections.addAll(images, fileList);
+
+            }
+
+
+
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+
+        switch (requestCode) {
+            case READ_PERMISSION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted.
+                    Toast.makeText(getContext(),"Granted",Toast.LENGTH_SHORT).show();
+                    loadImages();
+                } else {
+                    // permission denied.
+                    // tell the user the action is cancelled
+                    AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+                    alertDialog.setMessage("denied");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,"ok",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
+                return;
+            }
+        }
+    }
+
 
 
 
