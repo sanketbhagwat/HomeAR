@@ -1,15 +1,22 @@
 package com.example.homear;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.viewpager.widget.ViewPager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -19,7 +26,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
  */
 public class UserFragment extends Fragment {
 
-    private static final int READ_PERMISSION=101;
+    private static final int  PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE=121;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,6 +72,8 @@ public class UserFragment extends Fragment {
     user_adapter userAdapter;
     private int[] tabIcons = { R.drawable.outline_crop_original_24,
             R.drawable.outline_video_library_24,R.drawable.outline_favorite_24};
+    galleryAdapter gallery_adapter;
+    RecyclerView imageRecycler;
 
 
     @Override
@@ -80,22 +89,57 @@ public class UserFragment extends Fragment {
         viewPager2.setAdapter(userAdapter);
         new TabLayoutMediator(tabLayout,viewPager2,(tab, position) -> tab.setIcon(tabIcons[position])).attach();
 
+        if (ContextCompat.checkSelfPermission(view.getContext(),
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
 
-//        if(ContextCompat.checkSelfPermission(view.getContext(), Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
-//            ActivityCompat.requestPermissions(,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},READ_PERMISSION);
-//        }
-////        else{
-////            loadImages();
-////        }
-//
-        
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+        }
+        else {
+            // has the permission.
+            loadImages();
+        }
+
+
 
         return view;
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-//        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-//        adapter.addFragment(new Fragment1(), ""); adapter.addFragment(new Fragment2(), "");
-//        adapter.addFragment(new Fragment3(), ""); viewPager.setAdapter(adapter);
+    private void loadImages() {
+        List<String>imagelist=new ArrayList<>();
+
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode,permissions,grantResults);
+        if (requestCode == PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getContext(), "heree", Toast.LENGTH_SHORT).show();
+
+                // permission was granted.
+                loadImages();
+//                } else {
+//                    // permission denied.
+//                    // tell the user the action is cancelled
+//                    AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+//                    alertDialog.setMessage(getString(R.string.cannot_save_image));
+//                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getString(R.string.ok),
+//                            new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    dialog.dismiss();
+//                                }
+//                            });
+//                    alertDialog.show();
+//                }
+//                return;
+            }
+        }
+    }
+
+
+
+
 }

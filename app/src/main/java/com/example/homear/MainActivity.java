@@ -67,6 +67,7 @@ package com.example.homear;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
@@ -101,16 +102,23 @@ public class MainActivity extends AppCompatActivity {
                 {
                     case R.id.brands:
                         temp = new BrandsFragment();
+                        Log.e("her1", String.valueOf(item.getItemId()));
                         break;
                     case R.id.idea :
                         temp = new IdeaFragment();
+                        Log.e("her1", String.valueOf(item.getItemId()));
+
                         break;
                     case R.id.account :
                         temp = new UserFragment();
+                        Log.e("her1", String.valueOf(item.getItemId()));
+
 
                         break;
                     case R.id.home:
                         temp = new HomeFragment();
+                        Log.e("her1", String.valueOf(item.getItemId()));
+
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.framecontainer,temp).commit();
                 return true;
