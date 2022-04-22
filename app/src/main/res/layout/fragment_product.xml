@@ -2,63 +2,195 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" xmlns:app="http://schemas.android.com/apk/res-auto"
-                tools:context=".ProductFragment"
-                android:background="@color/design_default_color_on_primary"
+                android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+                tools:context=".product_page">
 
->
-
-    <!-- TODO: Update blank fragment layout -->
-    <ImageView
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:src="@drawable/baseline_menu_18"
-            android:scaleType="centerCrop"
-            android:layout_margin="20dp"
-            android:id="@+id/productImage"/>
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_250sdp">
+
+
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:adjustViewBounds="true"
+
+                        android:id="@+id/productImage"
+                        android:src="@drawable/outline_home_24"/>
+                <CheckBox
+                        android:id="@+id/icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/outline_favorite_border_24"
+                        app:buttonTint="@android:color/white"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_15sdp"/>
+
+            </RelativeLayout>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+            >
+                <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                >
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/productCategory"
+                            android:text="cate"
+                            android:textSize="20dp"
+                            android:layout_marginBottom="10dp">
+
+                    </TextView>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/productName"
+                            android:text="Home Furnish"
+                            android:textSize="24dp"
+                            android:layout_marginBottom="6dp"
+                    ></TextView>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/productPrice"
+                            android:text="20$"
+                            android:textSize="24dp"
+                    >
+
+                    </TextView>
+
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="190dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                >
+
+                    <Button
+                            android:id="@+id/_3dButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="show 3D"
+
+
+                            app:icon="@drawable/outline_3d_rotation_24"
+                            android:theme="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+
+                    />
+                    <Button
+                            android:id="@+id/arButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Show AR"
+                            app:icon="@drawable/outline_view_in_ar_24"
+                            android:theme="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+
+
+                    />
+                    
+                    
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <LinearLayout 
+                    android:layout_width="match_parent" 
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+
+            >
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                              >
+                    <ImageButton
+                            android:id="@+id/eachCartItemAddQuantityBtn"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:srcCompat="@drawable/outline_add_24" />
+
+                    <TextView
+                            android:id="@+id/eachCartItemQuantityTV"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="12dp"
+                            android:text="1"
+                            android:gravity="center"
+
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/eachCartItemMinusQuantityBtn"
+                            app:layout_constraintEnd_toStartOf="@+id/eachCartItemAddQuantityBtn"
+                            app:layout_constraintTop_toTopOf="@+id/eachCartItemMinusQuantityBtn" />
+
+                    <ImageButton
+                            android:id="@+id/eachCartItemMinusQuantityBtn"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginEnd="8dp"
+
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/eachCartItemQuantityTV"
+                            app:srcCompat="@drawable/outline_remove_24" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="20dp"
+                >
+                    <Button
+                            android:id="@+id/cartButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="show 3D"
 
 
 
-    />
-    <TextView
-            android:id="@+id/productName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:textColor="@color/design_default_color_on_secondary"
-            android:gravity="center"
-            android:layout_marginTop="245dp"
-            android:background="@color/design_default_color_on_primary"
-    />
-    <TextView
-            android:id="@+id/productPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="25dp"
-            android:textColor="@color/design_default_color_on_secondary"
-            android:gravity="center"
-            android:layout_marginTop="285dp"
-            android:background="@color/design_default_color_on_primary"
-    />
-    <Button
-            android:id="@+id/arButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:icon="@drawable/outline_view_in_ar_24"
-            android:layout_below="@id/productPrice"
-    />
+                            app:icon="@drawable/outline_3d_rotation_24"
+                            android:theme="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
 
-    <Button
-            android:id="@+id/_3dButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:icon="@drawable/outline_3d_rotation_24"
-            android:layout_below="@id/productPrice"
-            android:layout_toEndOf="@id/arButton"
-    />
+                    />
+
+                </LinearLayout>
 
 
 
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </RelativeLayout>

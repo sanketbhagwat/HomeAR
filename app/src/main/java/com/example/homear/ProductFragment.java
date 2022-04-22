@@ -1,25 +1,16 @@
 package com.example.homear;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.*;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
-
-import java.io.File;
-import java.io.IOException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -88,54 +79,55 @@ public class ProductFragment extends Fragment {
         arButton=view.findViewById(R.id.arButton);
         _3dButton=view.findViewById(R.id._3dButton);
 
-        String prod_key =getArguments().getString("prod_key");
-        reference.child(prod_key).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    String name = snapshot.child("name").getValue().toString();
-                    String img =snapshot.child("img").getValue().toString();
-                    String price=snapshot.child("price").getValue().toString();
-                    String model=snapshot.child("model").getValue().toString();
+        products product_obj =getArguments().getParcelable("product_obj");
+//        reference.child(prod_key).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if(snapshot.exists()){
+//                    String name = snapshot.child("name").getValue().toString();
+//                    String img =snapshot.child("img").getValue().toString();
+//                    String price=snapshot.child("price").getValue().toString();
+//                    String model=snapshot.child("model").getValue().toString();
 //
-                    Picasso.get().load(img)
+                    Picasso.get().load(product_obj.img)
                             .into(imageView);
-                    nameView.setText(name);
-                    priceView.setText(price);
+                    nameView.setText(product_obj.title);
+                    priceView.setText(product_obj.price);
 
-                    FirebaseStorage storage = FirebaseStorage.getInstance();
-                    StorageReference httpsReference = storage.getReferenceFromUrl(model);
-                    arButton.setOnClickListener(v->{
-                        try {
-                            File file = File.createTempFile("model", "glb");
-                            httpsReference.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                                    Intent  intent =new Intent(getActivity(),showAR.class);
-                                    intent.putExtra("modelFile",model);
-                                    startActivity(intent);
-
-
-
-                                }
-                            });
-                        } catch (IOException e) {
-                            e.printStackTrace();
+//                    FirebaseStorage storage = FirebaseStorage.getInstance();
+//                    StorageReference httpsReference = storage.getReferenceFromUrl(model);
+//                    arButton.setOnClickListener(v->{
+//                        try {
+//                            File file = File.createTempFile("model", "glb");
+//                            httpsReference.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+//                                @Override
+//                                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                                    Intent  intent =new Intent(getActivity(),showAR.class);
+//                                    intent.putExtra("modelFile",file);
+//                                    startActivity(intent);
 //
-
-                        }
-                    });
-
-
-                }
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.d("test",error.getMessage());
-
-            }
-        });
+//
+//
+//
+//                                }
+//                            });
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+////
+//
+//                        }
+//                    });
+//
+//
+//                }
+//
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Log.d("test",error.getMessage());
+//
+//            }
+//        });
 
 //        nameView.setText(mParam1);
 

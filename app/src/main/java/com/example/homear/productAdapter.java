@@ -46,7 +46,7 @@ public class productAdapter extends RecyclerView.Adapter<productAdapter.prodView
                 AppCompatActivity activity=(AppCompatActivity) view.getContext();
                 ProductFragment productFragment=new ProductFragment();
                 Bundle args=new Bundle();
-                args.putString("prod_key",productList.get(holder.getAdapterPosition()).key);
+                args.putParcelable("product_obj",productList.get(holder.getAdapterPosition()));
                 productFragment.setArguments(args);
 
                 activity.getSupportFragmentManager().beginTransaction().

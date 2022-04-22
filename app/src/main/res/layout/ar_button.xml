@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<ImageButton xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--             android:layout_width="wrap_content"-->
+<!--             android:layout_height="wrap_content"-->
+<!--             android:id="@+id/ar_button"-->
+<!--             android:scaleType="centerCrop"-->
+
+<!--             android:src="@drawable/outline_radio_button_checked_24"-->
+<!--             android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--&gt;-->
+
+<!--</ImageButton>-->
+
+
+<LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/arView"
+        android:padding="@dimen/_10sdp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@drawable/rounded_bg"
+        android:orientation="vertical"
+>
+    <ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+                 android:src="@drawable/outline_clear_24"
+                 android:layout_gravity="end"
+                 android:background="@android:color/transparent"
+                 android:layout_marginBottom="@dimen/_5sdp"
+    >
+
+    </ImageButton>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selected Model Name"
+            android:textSize="@dimen/_16sdp"
+    >
+
+    </TextView>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="20$"
+              android:textSize="@dimen/_14sdp"
+              android:layout_marginTop="@dimen/_5sdp"
+              android:layout_marginBottom="@dimen/_5sdp"
+              android:layout_marginRight="@dimen/_5sdp"
+
+    >
+
+    </TextView>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  >
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Materials"
+                android:layout_marginBottom="@dimen/_8sdp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
+
+        >
+            <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/field_materials"
+                    android:inputType="none"
+
+            >
+
+            </AutoCompleteTextView>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Textures"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/field_textures"
+                    android:inputType="none">
+<!--                <ImageView -->
+<!--                        android:layout_width="wrap_content" -->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/outline_delete_outline_24">-->
+
+<!--                </ImageView>-->
+
+            </AutoCompleteTextView>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
+    <Button
+            android:id="@+id/removeModel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remove"
+            app:icon="@drawable/outline_delete_outline_24"
+            style="?attr/materialButtonOutlinedStyle"
+            android:theme="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/_5sdp"
+            >
+
+    </Button>
+
+
+
+</LinearLayout>
+

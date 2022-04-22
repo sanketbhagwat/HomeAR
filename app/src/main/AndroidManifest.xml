@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <uses-feature android:name="android.hardware.camera.ar"/>
 
@@ -15,10 +16,16 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.HomeAR">
+        <meta-data
+                android:name="com.google.android.actions"
+                android:resource="@xml/rounded_bg"/>
 
-        <activity android:name=".MainActivity"
-        android:exported="true"/>
-
+        <activity
+                android:name=".selectionActivity"
+                android:exported="true"/>
+        <activity
+                android:name=".MainActivity"
+                android:exported="true"/>
         <activity
                 android:name=".searchPage"
                 android:exported="true"/>

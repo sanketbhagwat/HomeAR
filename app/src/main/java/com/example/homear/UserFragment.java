@@ -1,10 +1,16 @@
 package com.example.homear;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -12,6 +18,8 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class UserFragment extends Fragment {
+
+    private static final int READ_PERMISSION=101;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,11 +60,42 @@ public class UserFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    private TabLayout tabLayout;
+    private ViewPager2 viewPager2;
+    user_adapter userAdapter;
+    private int[] tabIcons = { R.drawable.outline_crop_original_24,
+            R.drawable.outline_video_library_24,R.drawable.outline_favorite_24};
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user, container, false);
+        View view =inflater.inflate(R.layout.fragment_user, container, false);
+        viewPager2 = view.findViewById(R.id.viewPager2);
+//
+        tabLayout = view.findViewById(R.id.tabLayout);
+        userAdapter=new user_adapter((FragmentActivity) view.getContext());
+
+        viewPager2.setAdapter(userAdapter);
+        new TabLayoutMediator(tabLayout,viewPager2,(tab, position) -> tab.setIcon(tabIcons[position])).attach();
+
+
+//        if(ContextCompat.checkSelfPermission(view.getContext(), Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+//            ActivityCompat.requestPermissions(,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},READ_PERMISSION);
+//        }
+////        else{
+////            loadImages();
+////        }
+//
+        
+
+        return view;
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+//        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+//        adapter.addFragment(new Fragment1(), ""); adapter.addFragment(new Fragment2(), "");
+//        adapter.addFragment(new Fragment3(), ""); viewPager.setAdapter(adapter);
     }
 }
